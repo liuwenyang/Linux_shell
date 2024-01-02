@@ -1,0 +1,35 @@
+#!/bin/bash
+# 查找文件
+search_file="$HOME/.bashrc"
+# 开始行标志
+start_string="###beginofchenzhen'salias###"
+# 结束行标志
+end_string="###endofchenzhen'salias###"
+# 汽车组开始行标志
+start_string_car="###beginofchenzhen'salias_car###"
+# 汽车组结束行标志
+end_string_car="###endofchenzen'salias_car###"
+
+# 函数：打印指定开始和结束标记之间的内容
+awk_print() {
+    awk -v start="$1" -v end="$2" '
+    $0 ~ start {flag=1; next}
+    $0 ~ end {flag=0}
+    flag && /^alias / {sub(/^alias /, ""); print}' "$3"
+}
+
+if [ 1 ]; then
+
+# 打印起始内容和结束内容这之间的行
+awk_print "$start_string" "$end_string" "$search_file"
+
+awk_print "$start_string_car" "$end_string_car" "$search_file"
+fi
+
+# 输出到屏幕
+cat << EOF
+bak 快速带时间戳备份
+修改请输入
+vi ~/.bashrc
+改完后执行 source ~/.bashrc
+EOF

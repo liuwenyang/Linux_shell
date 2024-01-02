@@ -1,0 +1,9 @@
+#!/bin/bash
+*/5 * * * * ntpdate -B 172.29.3.75
+# 重启cron服务以确保新的任务生效,如下三条哪个管用用哪个
+sudo systemctl restart cron
+sudo service cron restart
+sudo /etc/init.d/cron restart
+
+#使用hwclock命令将更改后的时间写入硬件时钟：
+sudo hwclock --systohc
