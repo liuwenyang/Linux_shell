@@ -6,8 +6,8 @@ if [ ! -f clearzcfiles.log ]; then
     touch clearzcfiles.log
 fi
 #默认保留天数
-savedays=30
-#最少7天
+savedays=15
+#最少保存天数
 readonly minsavedays=2
 #docker保留行数
 readonly savelines=5000000
@@ -145,7 +145,7 @@ function clearhistory()
 {
   getsavedays
   echo $(date) "开始清理文件" >> $DIR"/clearzcfiles.log"
-  echo "开始清理图片~"
+  echo "开始清理img~"
   clearfiles "/home/storage/data/lidar/img/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   echo "开始清理pcd~"
   clearfiles "/home/storage/data/lidar/pcd/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
@@ -153,12 +153,15 @@ function clearhistory()
   clearfiles "/home/storage/data/lidar/log/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   echo "开始清理统一的日志~"
   clearfiles "/home/storage/data/lidar/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
-  echo "开始清理原图片~"
+  echo "开始清理自助原图片~"
   clearfiles "/home/storage/data/video/img/001/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   clearfiles "/home/storage/data/video/img/002/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
-  echo "开始清理结果图像~"
+  echo "开始清理自助结果图像~"
   clearfiles "/home/storage/data/video/img/result/001/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   clearfiles "/home/storage/data/video/img/result/002/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
+  echo "开始清理自助日志"
+  clearfiles "/home/storage/data/video/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
+  clearfiles "/home/storage/data/video/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   return 0
 }
 

@@ -82,6 +82,8 @@ EOF
 cat << EOF >> ~/.bashrc
 $end_string
 EOF
+chmod 777 docker-logs-localtime
+mv docker-logs-localtime /usr/local/bin
 source ~/.bashrc && echo ".bashrc修改完成"
 
 echo 请手动执行如下命令
