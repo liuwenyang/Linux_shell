@@ -10,13 +10,21 @@ After=network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/home/cz/frp_0.52.3_linux_arm64/frps -c /home/cz/frp_0.52.3_linux_arm64/frps.toml
+ExecStart=$PWD/frpc -c $PWD/frpc.toml
 Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
 
 EOF
+#重启
 systemctl daemon-reload
 systemctl enable frp_client.service
 systemctl start frp_client.service
+
+#检查状态并打印
+sudo systemctl status frp_client.service | tee /dev/tty
+
+systemctl --no-pager status frp_client.service 
+
+echo
