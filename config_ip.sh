@@ -42,4 +42,4 @@ echo "配置网卡信息为"
 cat /etc/network/interfaces
 echo
 
-echo service networking restart 
+service networking restart 

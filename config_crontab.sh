@@ -1,21 +1,24 @@
 #!/bin/bash
+
 if [ -z "$zc_path" ]; then
   zc_path=/home/storage/zc
 fi
 if [ -z "$deploy_path" ]; then
   deploy_path=/home
 fi
-if [ -z "$clearzcfiles_path" ]; then
-  clearzcfiles_path="/opt/matrix/middleware"
-fi
+
 script_path=$deploy_path/auto_truck_script
 
 
+#移动自动保存脚本文件到指定文件夹
+mv "$script_path"/safe_save.sh /home/storage/config/yaml && echo && echo --------------移动备份脚本完成-------------- && echo
 
 
 ######定义cron任务区开始######
 #每2周周一凌晨1点自动保存重要文件的脚本
-safe_save_cron="0 4 * * 1 root $clearzcfiles_path/safe_save.sh"
+safe_save_cron="0 4 * * 1 root /home/storage/config/yaml/safe_save.sh"
+#每小时备份yaml的功能, 防止GUI崩溃导致yaml清空
+safe_save_yaml="0 * * * * cp /home/storage/config/yaml/config.yaml /home/storage/config/yaml/config.yaml_auto_bak"
 #同步系统时间到硬件时间;将硬件时钟调整为与目前的系统时钟一致，每天0点
 hwclock_cron="0 0 * * * root timedatectl set-local-rtc 0 && hwclock -s"
 
@@ -42,6 +45,13 @@ if ! crontab -l | grep "$hwclock_cron"; then
     echo "同步系统时间到硬件时间;将硬件时钟调整为与目前的系统时钟一致，每天0点"
 else
     echo "同步系统时间到硬件时间;将硬件时钟调整为与目前的系统时钟一致，每天0点"
+fi
+if ! crontab -l | grep "$safe_save_yaml"; then
+    # 如果不存在，添加到crontab
+    (crontab -l; echo "$safe_save_yaml") | crontab -
+    echo "每小时备份yaml的功能"
+else
+    echo "每小时备份yaml的功能"
 fi
 ######添加cron任务区结束######
 

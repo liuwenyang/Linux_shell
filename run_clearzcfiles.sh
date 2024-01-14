@@ -16,8 +16,6 @@ pwd
 mkdir -p $clearzcfiles_path
 #创建清理脚本文件夹完成
 mv $clear_script_name* $clearzcfiles_path && echo && echo --------------移动清理脚本完成-------------- && echo
-#移动自动保存脚本文件到指定文件夹
-mv $script_path/safe_save.sh $clearzcfiles_path && echo && echo --------------移动备份脚本完成-------------- && echo
 
 
 cd $clearzcfiles_path
