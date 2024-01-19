@@ -81,7 +81,18 @@ else
 fi
 # 重启cron服务以确保新的任务生效
 sudo systemctl restart cron
-systemctl enable clearfiles.service
+
+# 重启systemd服务以确保新的服务生效
+systemctl daemon-reload
+
+systemctl enable clearzcfiles.service
+systemctl enable watchclearzcfiles.service
+
+systemctl start clearzcfiles.service
+systemctl start watchclearzcfiles.service
+
+
+
 
 cd -
 kill -INT $$

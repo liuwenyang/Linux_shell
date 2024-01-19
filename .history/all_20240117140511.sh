@@ -29,12 +29,12 @@ export docker_log_path=$zc_path/docker_log
 #微力同步目录
 export SYNC_path=$zc_path/SYNC
 #配置文件目录
-export config_path=/home/storage/config/yaml
+export config_path=$zc_path/config
 #分发脚本文件夹
 #export distribute_script_path=$zc_path/distribute_script
 
 #创建文件夹
-mkdir  -p $zizhu_img_path $clearzcfiles_path $docker_log_path $SYNC_path $config_path/config.yaml_history
+mkdir  -p $zizhu_img_path $clearzcfiles_path $docker_log_path $SYNC_path
 echo --------------创建文件夹完成--------------
 
 # mv $distribute_script_name $distribute_script_path

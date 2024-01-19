@@ -54,6 +54,7 @@ ping(){
 }
 shopt -s extglob 
 
+
 echo 输入mman查看快捷命令
 EOF
 
@@ -61,7 +62,7 @@ EOF
 cat << EOF >> ~/.bashrc
 $end_string
 EOF
-
+#/usr/local/bin/czexit &
 chmod 777 bak mman czexit
 mv bak /usr/local/bin
 mv mman /usr/local/bin

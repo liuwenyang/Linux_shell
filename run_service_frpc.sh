@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# 创建一个名为"frp_client.service"的文件，并写入以下内容：
-cat << EOF > /etc/systemd/system/frp_client.service
+# 创建一个名为"frpc.service"的文件，并写入以下内容：
+cat << EOF > /etc/systemd/system/frpc.service
 # frp client service
 [Unit]
 Description=FRP Client Service
@@ -19,12 +19,12 @@ WantedBy=multi-user.target
 EOF
 #重启
 systemctl daemon-reload
-systemctl enable frp_client.service
-systemctl start frp_client.service
+systemctl enable frpc.service
+systemctl start frpc.service
 
 #检查状态并打印
-sudo systemctl status frp_client.service | tee /dev/tty
+sudo systemctl status frpc.service | tee /dev/tty
 
-systemctl --no-pager status frp_client.service 
+systemctl --no-pager status frpc.service 
 
 echo
