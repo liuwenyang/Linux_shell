@@ -17,7 +17,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 
 EOF
-#重新加载 systemd 配置以识别新的服务文件：
+#重启
 systemctl daemon-reload
 systemctl enable frpc.service
 systemctl start frpc.service

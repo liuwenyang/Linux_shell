@@ -191,7 +191,7 @@ function startcleardockerlogtask() {
     echo "启动定时清理docker日志任务失败~"
   fi
 }
-#清理观察记录历史时间是否错乱的日志
+#观察记录历史时间是否错乱
 function clearTimeLog() {
   local file="/home/storage/zc/TimeLog.txt" # The path to the file
   local line_num=60000

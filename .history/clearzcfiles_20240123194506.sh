@@ -191,16 +191,16 @@ function startcleardockerlogtask() {
     echo "启动定时清理docker日志任务失败~"
   fi
 }
-#清理观察记录历史时间是否错乱的日志
+
 function clearTimeLog() {
   local file="/home/storage/zc/TimeLog.txt" # The path to the file
-  local line_num=60000
+
   # Check if the file has more than 50000 lines
   line_count=$(wc -l <"$file")
 
-  if [ "$line_count" -gt $line_num ]; then
+  if [ "$line_count" -gt 50000 ]; then
     # The file has more than 50000 lines, truncate the file to the last 50000 lines
-    tail -n $line_num "$file" >"$file.tmp" && mv "$file.tmp" "$file"
+    tail -n 50000 "$file" >"$file.tmp" && mv "$file.tmp" "$file"
   fi
 
 }
@@ -269,10 +269,6 @@ function main() {
       ;;
     v)
       echo "3.6.31"
-      exit 1
-      ;;
-    time)
-      clearTimeLog
       exit 1
       ;;
     ?)

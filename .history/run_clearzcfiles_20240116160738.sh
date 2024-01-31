@@ -43,6 +43,21 @@ echo
 echo
 #启用crontab定时
 
+# 首先判断/etc/crontab文件中是否已存在相关任务
+#在每天凌晨 1 点（0:00:01）运行
+# if [ -z "$(grep "$clearzcfiles_path/$clear_script_name.sh -d" /etc/crontab)" ]; then
+#     echo -e "3 0 * * * root $clearzcfiles_path/$clear_script_name.sh -d" >> /etc/crontab
+# fi
+# #在每天凌晨 2 点（0:00:02）运行
+# if [ -z "$(grep "$clearzcfiles_path/$clear_script_name.sh -z" /etc/crontab)" ]; then
+#     echo -e "2 0 * * * root $clearzcfiles_path/$clear_script_name.sh -z" >> /etc/crontab
+# fi
+# #在每天凌晨 1 点（0:00:01）运行
+# if [ -z "$(grep "$clearzcfiles_path/$clear_script_name.sh -w" /etc/crontab)" ]; then
+#     echo -e "1 0 * * * root $clearzcfiles_path/$clear_script_name.sh -w" >> /etc/crontab
+# fi
+#不建议使用上述,使用单独的crontab.sh定义任务
+#之前在神东发现直接修改文件的话有一定概率不执行, 但用root用户执行crontab -e添加的定时任务肯定会执行
 if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -d"; then
     # 如果不存在，添加到crontab
     (crontab -l; echo "0 1 * * 1 root $clearzcfiles_path/$clear_script_name.sh -d") | crontab -
@@ -63,13 +78,6 @@ if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -w"; then
     echo ""$clearzcfiles_path/$clear_script_name.sh -w"已添加到crontab中"
 else
     echo ""$clearzcfiles_path/$clear_script_name.sh -w"这个任务已存在"
-fi
-if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -time"; then
-    # 如果不存在，添加到crontab
-    (crontab -l; echo "0 4 * * 1 root $clearzcfiles_path/$clear_script_name.sh -time") | crontab -
-    echo ""$clearzcfiles_path/$clear_script_name.sh -time"已添加到crontab中"
-else
-    echo ""$clearzcfiles_path/$clear_script_name.sh -time"这个任务已存在"
 fi
 # 重启cron服务以确保新的任务生效
 sudo systemctl restart cron

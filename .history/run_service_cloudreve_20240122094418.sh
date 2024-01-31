@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# 定义服务名称和命令
+# 创建一个名为"frp_sever.service"的文件，并写入以下内容：
 server_name=cloudreve
-start_command="$PWD/cloudreve"
 cat << EOF > /etc/systemd/system/$server_name.service
 [Unit]
 Description=$server_name
@@ -12,7 +11,7 @@ Wants=network.target
 
 [Service]
 WorkingDirectory=$PWD
-ExecStart=$start_command
+ExecStart=$PWD/$server_name
 Restart=on-abnormal
 RestartSec=5s
 KillMode=mixed
@@ -24,7 +23,7 @@ StandardError=syslog
 WantedBy=multi-user.target
 
 EOF
-#重新加载 systemd 配置以识别新的服务文件：
+#重启
 systemctl daemon-reload
 systemctl enable $server_name.service
 systemctl start $server_name.service

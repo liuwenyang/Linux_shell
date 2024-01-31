@@ -2,12 +2,14 @@
 if [ $1 == usb ]; then
     sh ./installByUSB.sh 
 else
-    #部署文件目录
-    export deploy_path=/home
-    #小脚本文件夹
-    export script_path=$deploy_path/auto_truck_script
+    # #部署文件目录
+    # export deploy_path=/home
+    # #小脚本文件夹
+    # export script_path=$deploy_path/auto_truck_script
 fi
 
+#部署文件目录
+export deploy_path=${PWD}
 #装车文件夹
 export zc_path="/home/storage/zc"
 #项目名称
@@ -40,10 +42,6 @@ echo --------------创建文件夹完成--------------
 # mv $distribute_script_name $distribute_script_path
 # echo 移动分发脚本完成
 #启动U盘部署就将installByUSB=true
-
-
-
-
 
 
 

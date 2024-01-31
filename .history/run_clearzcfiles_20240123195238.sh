@@ -66,7 +66,7 @@ else
 fi
 if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -time"; then
     # 如果不存在，添加到crontab
-    (crontab -l; echo "0 4 * * 1 root $clearzcfiles_path/$clear_script_name.sh -time") | crontab -
+    (crontab -l; echo "0 3 * * 1 root $clearzcfiles_path/$clear_script_name.sh -time") | crontab -
     echo ""$clearzcfiles_path/$clear_script_name.sh -time"已添加到crontab中"
 else
     echo ""$clearzcfiles_path/$clear_script_name.sh -time"这个任务已存在"

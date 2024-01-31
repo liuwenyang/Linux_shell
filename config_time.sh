@@ -1,6 +1,8 @@
 #!/bin/bash
 #设置时区为上海
 sudo timedatectl set-timezone Asia/Shanghai
+#设置时区为美国
+#sudo timedatectl set-timezone America/New_York
 
 
 #nx小站设置时间方法
