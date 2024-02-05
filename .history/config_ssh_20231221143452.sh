@@ -5,12 +5,12 @@
 function sshd_config()
 {
     # 移除注释并修改 Port
-    # sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
-    # if [ -z "$(grep 'Port 22' /etc/ssh/sshd_config)" ]; then
-    #     echo "修改ssh端口失败"
-    # else
-    #     echo "修改ssh端口成功"
-    # fi
+    sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+    if [ -z "$(grep 'Port 22' /etc/ssh/sshd_config)" ]; then
+        echo "修改ssh端口失败"
+    else
+        echo "修改ssh端口成功"
+    fi
     #grep '^Port 22$' /etc/ssh/sshd_config
     # 修改 PermitRootLogin
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config

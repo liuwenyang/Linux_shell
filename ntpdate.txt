@@ -1,5 +1,5 @@
 #!/bin/bash
-*/5 * * * * ntpdate -B 172.29.3.75 && echo $(now) >> /home/storage/zc/TimeLog.txt
+*/5 * * * * ntpdate -B 10.225.31.70 && echo $(now) >> /home/storage/zc/TimeLog.txt
 # 重启cron服务以确保新的任务生效,如下三条哪个管用用哪个
 sudo systemctl restart cron
 sudo service cron restart
