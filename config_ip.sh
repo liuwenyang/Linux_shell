@@ -55,8 +55,8 @@ cat << EOF >> /etc/network/interfaces
 auto eth0
 iface eth0 inet static
 address $IP
-netmask $SUBNET_MASK
-gateway $GATEWAY
+netmask $FULL_SUBNET_MASK
+gateway $FULL_GATEWAY
 EOF
 
 echo "配置网卡信息为"
