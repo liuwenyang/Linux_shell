@@ -67,8 +67,8 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:$LD_LIBRARY_PATH
 #快捷操作
 
 #汽车组定制化
-alias logc="docker logs -tf --tail 4000 $(docker ps | awk 'BEGIN{FS=" "} $3 ~/client/ {print $1}') | docker-logs-localtime" 
-alias logm="docker logs -tf --tail 1000  $(docker ps | awk 'BEGIN{FS=" "} $3 ~/main/ {print $1}') | docker-logs-localtime"
+alias logc="docker logs -tf --tail 3000 $(docker ps | awk 'BEGIN{FS=" "} $3 ~/client/ {print $1}') | docker-logs-localtime" 
+alias logm="docker logs -tf --tail 800  $(docker ps | awk 'BEGIN{FS=" "} $3 ~/main/ {print $1}') | docker-logs-localtime"
 alias rs-c="docker restart $(docker ps | awk 'BEGIN{FS=" "} $3 ~/client/ {print $1}')" 
 alias rs-m="docker restart $(docker ps | awk 'BEGIN{FS=" "} $3 ~/main/ {print $1}')" 
 alias rs-cm="docker restart $(docker ps | awk 'BEGIN{FS=" "} $3 ~/client/ {print $1}') $(docker ps | awk 'BEGIN{FS=" "} $3 ~/main/ {print $1}')" 
