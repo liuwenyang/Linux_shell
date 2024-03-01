@@ -66,7 +66,7 @@ EOF
 chmod 777 bak mman czexit
 mv bak /usr/local/bin
 mv mman /usr/local/bin
-mv czexit /usr/local/bin
+# mv czexit /usr/local/bin
 echo 请手动执行如下命令
 echo "source ~/.bashrc" 
 source /root/.bashrc && echo ".bashrc修改完成"
