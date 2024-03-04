@@ -29,7 +29,7 @@ systemctl daemon-reload
 systemctl enable $server_name.service
 systemctl start $server_name.service
 
-#检查服务文档
+#检查服务
 cat /etc/systemd/system/$server_name.service
 echo
 
