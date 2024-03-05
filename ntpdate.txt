@@ -7,3 +7,5 @@ sudo /etc/init.d/cron restart
 
 #使用hwclock命令将更改后的时间写入硬件时钟：
 sudo hwclock --systohc
+#硬件时钟与系统时钟同步
+clock --hctosys

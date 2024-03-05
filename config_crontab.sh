@@ -20,7 +20,7 @@ safe_save_cron="0 4 * * 1 root /home/storage/config/yaml/safe_save.sh"
 #每小时备份yaml的功能, 防止GUI崩溃导致yaml清空
 safe_save_yaml="0 * * * * cp /home/storage/config/yaml/config.yaml /home/storage/config/yaml/config.yaml_auto_bak"
 #同步系统时间到硬件时间;将硬件时钟调整为与目前的系统时钟一致，每天0点
-hwclock_cron="0 0 * * * root timedatectl set-local-rtc 0 && hwclock -s"
+hwclock_cron="0 0 * * * root timedatectl set-local-rtc 0 && hwclock -w && hwclock --systohc"
 
 
 ######定义cron任务区结束######
