@@ -3,11 +3,12 @@
 #开启通配符
 shopt -s extglob
 #rm -rf /home/!(nvidia|storage|config.yaml|app*) && echo --------------清理文件完成-------------- 
-deploy_path=$(dirname "${PWD}")
-
+if [ $(basename "${PWD}") == "auto_truck_script" ]; then
+  deploy_path=$(dirname "${PWD}")
+fi
 cd $deploy_path
 # 待删除的文件和文件夹数组
-files_to_delete=("client.tar" "dataview.tar" "server.tar" "auto_truck_script")
+files_to_delete=("client.tar" "dataview.tar" "server.tar" "auto_truck_script "ubuntu.tar" "tensorrt.z01" "tensorrt.tar" "lib2.zip" "lib.zip" "include2.zip" "include.zip" "bin.zip" "matrix.yaml")
 
 # 遍历数组
 for item in "${files_to_delete[@]}"; do
