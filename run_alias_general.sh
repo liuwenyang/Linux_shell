@@ -40,7 +40,7 @@ alias top='top -d 1'
 alias now='date "+%Y-%m-%dT%H:%M:%S"'
 
 alias ds='docker ps -a' 
-alias dl='docker logs -tf --tail=2000'
+alias dl='docker logs -tf --tail='
 alias dr='docker restart'
 alias cd='function _ccd(){ cd "$1"; ll -lh; };_ccd'
 alias cp='cp -r --remove-destination'
