@@ -66,7 +66,10 @@ bash $script_path/run_alias_car.sh
 
 bash $script_path/run_clearzcfiles.sh
 
-bash $script_path/clean_trash.sh 
+if [ $1 != usb];then
+    bash $script_path/clean_trash.sh 
+fi
+
 
 
 sleep 1
