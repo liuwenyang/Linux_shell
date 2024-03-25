@@ -1,5 +1,4 @@
 #!/bin/bash
-unalias bak
 
 if [ -z "$1" ]; then
     echo "请提供要备份的文件名"

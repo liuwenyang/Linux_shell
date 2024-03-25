@@ -37,7 +37,7 @@ echo
 #赋权
 chmod 777 $deploy_path/*
 chmod 777  $deploy_path/storage -R && echo --------------storage赋权完成--------------
-mv $deploy_path/storage /home && echo --------------移动storage完成--------------
+cp $deploy_path/storage /home && echo --------------移动storage完成--------------
 
 echo
 echo --------------基础环境完成--------------
