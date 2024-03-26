@@ -24,7 +24,7 @@ docker images
 #运性镜像
 #~/client/和~/c/都能删筛选出来,要做全字匹配
 if [ -z "$(docker ps | awk 'BEGIN{FS=" "} $3 ~/main/ {print $1}')" ]; then
-    docker run --net=host --runtime nvidia -v /home/storage:/home/storage:rw -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro  -e TZ=Asia/Shanghai --restart=on-failure --name=ser -itd server && echo "-----ser容器加载完成--------"
+    docker run --net=host --runtime nvidia -v /home/storage:/home/storage:rw -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro  -e TZ=Asia/Shanghai --restart always --name=ser -itd server && echo "-----ser容器加载完成--------"
 fi
 if [ -z "$(docker ps | awk 'BEGIN{FS=" "} $3 ~/client/ {print $1}')" ]; then
     docker run --net=host -v /home/storage:/home/storage:rw -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro  -e TZ=Asia/Shanghai --restart always --name=cli -itd client && echo "-----cli容器加载完成--------"
