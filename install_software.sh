@@ -11,12 +11,14 @@ check_and_install() {
     fi
 }
 
+
+#使用apt安装的软件
 # 更新软件包信息
 echo "正在更新软件包信息..."
 sudo apt-get update -y
 
 # 定义需要检查的软件列表
-packages=("vim" "tree" "wget" "netcat" "lsof" "tcpdump" "ntpdate")
+packages=("vim" "tree" "wget" "netcat" "lsof" "tcpdump" "ntpdate" "openssh-server" "at" "htop" "curl" "telnet" "vlc" "hardinfo" )
 
 # 遍历软件列表，检查并安装
 for package in "${packages[@]}"; do
@@ -28,3 +30,5 @@ echo "所有请求安装的软件处理完成，列表如下："
 for package in "${packages[@]}"; do
     echo $package
 done
+
+#特殊情况安装包
