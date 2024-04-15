@@ -9,3 +9,6 @@ sudo /etc/init.d/cron restart
 sudo hwclock --systohc
 #硬件时钟与系统时钟同步
 clock --hctosys
+
+#华为小站
+vi /etc/crontab
