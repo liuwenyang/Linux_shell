@@ -1,8 +1,14 @@
 #!/bin/bash
 
-# 定义服务名称和命令
+# 唯一需要改的  定义服务名称和命令
 server_name=frpc
 start_command="$PWD/$server_name -c $PWD/frpc.toml"
+
+
+echo 定义服务名称和命令为:
+echo $start_command
+echo
+
 #start_command="$PWD/$server_name"
 cat << EOF > /etc/systemd/system/$server_name.service
 [Unit]
@@ -29,10 +35,12 @@ systemctl enable $server_name.service
 systemctl start $server_name.service
 
 #检查服务
+echo 服务为:
 cat /etc/systemd/system/$server_name.service
 echo
 
 #检查状态并打印
+echo 状态为:
 sudo systemctl status $server_name.service | tee /dev/tty
 
 systemctl --no-pager status $server_name.service 
