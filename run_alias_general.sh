@@ -53,6 +53,40 @@ export HISTTIMEFORMAT='%F %T '
 ping(){
    /bin/ping "$@" | while read pong; do echo "$(now): $pong"; done
 }
+w2u() {
+  # 安全检查: 确保参数不为空
+  if [ -z "$1" ]; then
+    echo "Usage: W2U <file>"
+    return 1
+  fi
+
+  # 安全检查: 确保文件存在
+  if [ ! -f "$1" ]; then
+    echo "Error: File '$1' not found."
+    return 1
+  fi
+
+  # 安全检查: 确保文件不是二进制文件
+  if [ "$(file "$1" --mime | grep -q 'charset=binary'; echo $?)" = "0" ]; then
+    echo "Error: Binary file detected, aborting."
+    return 1
+  fi
+
+  # 使用 sed 命令替换 CR+LF 为 LF
+  # 使用 -i'' 选项直接在原文件上操作，没有备份
+  # 如果需要备份原文件，可以使用 -i'.bak' 来创建一个备份
+  sed -i'' 's/\r$//' "$1"
+  
+  # 返回操作结果
+  if [ $? -eq 0 ]; then
+    echo "Windows下的回车到Linux的回车字符完成"
+  else
+    echo "Error during conversion."
+    return 1
+  fi
+}
+
+
 shopt -s extglob 
 
 

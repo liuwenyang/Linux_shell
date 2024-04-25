@@ -13,7 +13,7 @@ if [ ! -f "$hosts_file" ]; then
     echo "hosts文件不存在或无法访问"
     exit 1
 fi
-#再Windows下副站粘贴到hosts文件的回车和Linux不是一种字符,格式转换,非常重要
+#Windows下复制粘贴到hosts文件的回车和Linux不是一种字符,格式转换,非常重要
 sed -i 's/\r$//' $hosts_file
 #检测是否安装了sshpass
 if [ ! -x "$(command -v sshpass)" ]; then
