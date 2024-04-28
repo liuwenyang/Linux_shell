@@ -45,28 +45,28 @@ echo
 
 if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -d"; then
     # 如果不存在，添加到crontab
-    (crontab -l; echo "0 1 * * 1 root $clearzcfiles_path/$clear_script_name.sh -d") | crontab -
+    (crontab -l; echo "0 1 * * 1 $clearzcfiles_path/$clear_script_name.sh -d") | crontab -
     echo ""$clearzcfiles_path/$clear_script_name.sh -d"已添加到crontab中"
 else
     echo ""$clearzcfiles_path/$clear_script_name.sh -d"这个任务已存在"
 fi
 if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -z"; then
     # 如果不存在，添加到crontab
-    (crontab -l; echo "0 2 * * 1 root $clearzcfiles_path/$clear_script_name.sh -z") | crontab -
+    (crontab -l; echo "0 2 * * 1 $clearzcfiles_path/$clear_script_name.sh -z") | crontab -
     echo ""$clearzcfiles_path/$clear_script_name.sh -z"已添加到crontab中"
 else
     echo ""$clearzcfiles_path/$clear_script_name.sh -z"这个任务已存在"
 fi
 if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -w"; then
     # 如果不存在，添加到crontab
-    (crontab -l; echo "0 3 * * 1 root $clearzcfiles_path/$clear_script_name.sh -w") | crontab -
+    (crontab -l; echo "0 3 * * 1 $clearzcfiles_path/$clear_script_name.sh -w") | crontab -
     echo ""$clearzcfiles_path/$clear_script_name.sh -w"已添加到crontab中"
 else
     echo ""$clearzcfiles_path/$clear_script_name.sh -w"这个任务已存在"
 fi
 if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -time"; then
     # 如果不存在，添加到crontab
-    (crontab -l; echo "0 4 * * 1 root $clearzcfiles_path/$clear_script_name.sh -time") | crontab -
+    (crontab -l; echo "0 4 * * 1 $clearzcfiles_path/$clear_script_name.sh -time") | crontab -
     echo ""$clearzcfiles_path/$clear_script_name.sh -time"已添加到crontab中"
 else
     echo ""$clearzcfiles_path/$clear_script_name.sh -time"这个任务已存在"
