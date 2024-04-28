@@ -1,0 +1,11 @@
+#!/bin/bash
+sleep 5
+if [ ! -f /usr/local/bin/czexit_state ]; then
+	
+    # 获取父shell的进程ID
+	parent_pid=$PPID
+	# 使用kill命令结束父shell的进程
+	kill -9 $parent_pid > /dev/null 2>&1
+else
+    rm /usr/local/bin/czexit_state > /dev/null 2>&1
+fi

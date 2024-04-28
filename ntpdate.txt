@@ -1,0 +1,14 @@
+#!/bin/bash
+*/5 * * * * ntpdate 10.225.31.70 && echo $(now) >> /home/storage/zc/TimeLog.txt
+# 重启cron服务以确保新的任务生效,如下三条哪个管用用哪个
+sudo systemctl restart cron
+sudo service cron restart
+sudo /etc/init.d/cron restart
+
+#使用hwclock命令将更改后的时间写入硬件时钟：
+sudo hwclock --systohc
+#硬件时钟与系统时钟同步
+clock --hctosys
+
+#华为小站
+vi /etc/crontab
