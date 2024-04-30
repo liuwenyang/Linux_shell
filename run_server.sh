@@ -10,6 +10,7 @@ echo $start_command
 echo
 
 #start_command="$PWD/$server_name"
+chmod 777 $PWD/$server_name
 cat << EOF > /etc/systemd/system/$server_name.service
 [Unit]
 Description=$server_name
