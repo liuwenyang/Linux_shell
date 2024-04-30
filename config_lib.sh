@@ -39,6 +39,10 @@ chmod 777 $deploy_path/*
 chmod 777  $deploy_path/storage -R && echo --------------storage赋权完成--------------
 cp $deploy_path/storage /home && echo --------------移动storage完成--------------
 
+echo 开始卸载todesk
+sudo apt-get remove todesk -y
+echo
+
 echo
 echo --------------基础环境完成--------------
 echo
