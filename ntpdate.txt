@@ -1,5 +1,5 @@
 #!/bin/bash
-*/5 * * * * ntpdate 10.225.31.70 && echo $(now) >> /home/storage/zc/TimeLog.txt
+*/5 * * * * ntpdate 10.225.31.70 && echo 真实时间:$(now) >> /home/storage/zc/TimeLog.txt && now=$(date +%s);later=$((now + 8*3600));date_str=$(date -d @$later +"%Y-%m-%d %H:%M:%S");timedatectl  set-ntp no;timedatectl set-time "$date_str";timedatectl set-local-rtc 0;echo $date_str && echo 偏移时间:$(now) >> /home/storage/zc/TimeLog.txt 
 # 重启cron服务以确保新的任务生效,如下三条哪个管用用哪个
 sudo systemctl restart cron
 sudo service cron restart
