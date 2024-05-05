@@ -7,11 +7,11 @@ if [ -z "$deploy_path" ]; then
   deploy_path=/home
 fi
 
-script_path=${PWD}
+script_path=$deploy_path/auto_truck_script
 
 
 #移动自动保存脚本文件到指定文件夹
-mv $script_path/safe_save.sh /home/storage/config/yaml && echo && echo --------------移动备份脚本完成-------------- && echo
+mv "$script_path"/safe_save.sh /home/storage/config/yaml && echo && echo --------------移动备份脚本完成-------------- && echo
 
 
 ######定义cron任务区开始######

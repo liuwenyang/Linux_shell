@@ -8,7 +8,7 @@ export deploy_path=$(dirname "${PWD}")
 
 
 #小脚本文件夹
-export script_path=${PWD}
+export script_path=$deploy_path/auto_truck_script
 
 #装车文件夹
 export zc_path="/home/storage/zc"
