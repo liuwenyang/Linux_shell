@@ -66,7 +66,7 @@ bash $script_path/run_alias_car.sh
 
 bash $script_path/run_clearzcfiles.sh
 
-if [ $1 != usb];then
+if [ "$1" != "usb" ]; then
     bash $script_path/clean_trash.sh 
     echo 看看我清理文件执行了吗
 fi
