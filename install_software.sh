@@ -18,7 +18,7 @@ echo "正在更新软件包信息..."
 sudo apt-get update -y
 
 # 定义需要检查的软件列表
-packages=("vim" "tree" "wget" "netcat" "lsof" "tcpdump" "ntpdate" "openssh-server" "at" "netcat" "htop" "curl" "telnet" "vlc" "hardinfo" "git" "subversion")
+packages=("vim" "tree" "wget" "netcat" "dos2unix" "lsof" "tcpdump" "docker-compose" "ntpdate" "openssh-server" "at" "netcat" "htop" "curl" "telnet" "vlc" "hardinfo" "git" "subversion")
 
 # 遍历软件列表，检查并安装
 for package in "${packages[@]}"; do

@@ -3,6 +3,8 @@
 # 开启通配符
 shopt -s extglob
 rm -rf /home/!(nvidia|storage|config.yaml|app*) && echo --------------清理文件完成--------------
+rm -rf /home/storage/data/lidar/img /home/storage/data/lidar/log /home/storage/data/lidar/pcd
+
 # if [ $(basename "${PWD}") == "auto_truck_script" ]; then
 #   deploy_path=$(dirname "${PWD}")
 # fi
