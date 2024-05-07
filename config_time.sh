@@ -13,3 +13,21 @@ timedatectl set-ntp no
 #调整docker时间
 chmod 777 docker-logs-localtime
 mv ./docker-logs-localtime /usr/local/bin/docker-logs-localtime
+
+
+cat << 'EOF' >> /home/storage/zc/update_time.sh
+#!/bin/bash
+ntpdate 192.168.1.175
+echo "真实时间:$(date +%s)" >> /home/storage/zc/TimeLog.txt
+now=$(date +%s)
+later=$((now + 8*3600))
+date_str=$(date -d @$later +"%Y-%m-%d %H:%M:%S")
+timedatectl set-ntp no
+timedatectl set-time "$date_str"
+timedatectl set-local-rtc 0
+echo $date_str
+echo "偏移时间:$(date +%s)" >> /home/storage/zc/TimeLog.txt
+
+EOF
+
+chmod +x update_time.sh
