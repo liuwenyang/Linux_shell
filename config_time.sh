@@ -17,7 +17,7 @@ mv ./docker-logs-localtime /usr/local/bin/docker-logs-localtime
 
 cat << 'EOF' >> /home/storage/zc/update_time.sh
 #!/bin/bash
-ntpdate 192.168.1.175
+ntpdate 192.168.1.175 >> /home/storage/zc/TimeLog.txt
 echo "真实时间:$(date +"%Y-%m-%d %H:%M:%S")" >> /home/storage/zc/TimeLog.txt
 now=$(date +%s)
 later=$((now + 8*3600))
