@@ -66,6 +66,8 @@ bash $script_path/run_alias_car.sh
 
 bash $script_path/run_clearzcfiles.sh
 
+bash $script_path/config_vim.sh
+
 if [[ -z "$1" || ( "$1" != "usb" && "$1" != "USB" ) ]]; then
     bash $script_path/clean_trash.sh 
     #echo "看看我清理文件执行了吗"
