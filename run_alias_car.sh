@@ -40,15 +40,6 @@ alias img='cd /home/storage/data/video/img/result/001'
 alias yaml='cd /home/storage/config/yaml' 
 alias om='cd /home/storage/models/lidar' 
 alias zc='cd /home/storage/zc' 
-#华为小站适用
-alias up-c='cd $distribute_script_path && mv /tmp/client . && ./localupdate.sh -c'
-alias up-m='cd $distribute_script_pathh && mv /tmp/main . && ./localupdate.sh -m'
-alias up-a='cd $distribute_script_path && mv /tmp/*.om . && ./localupdate.sh -a'
-
-#nx小站适用的up-c
-alias up-lc="cd $program_path && svn update && echo --------svn更新完成-------- && echo && echo --------开始编译-------- && cd client && chmod 777 build.sh && ./build.sh nx && mv /home/storage/zc/branch/client/client/client $distribute_script_path && cd $distribute_script_path && ./localupdate.sh -c"
-alias up-lm='cd $program_path && svn update && echo --------svn更新完成-------- && echo && echo --------开始编译-------- && cd service && chmod 777 build.sh && ./build.sh nx && mv /home/storage/zc/branch/service/dist/main $distribute_script_path && cd $distribute_script_path && ./localupdate.sh -m'
-
 
 EOF
 #带''是为了防止打印字符转义
