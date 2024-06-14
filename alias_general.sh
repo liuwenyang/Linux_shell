@@ -65,3 +65,5 @@ w2u() {
 
 
 shopt -s extglob 
+echo "You need Execute this command"
+echo "source ./alias_general.sh"
