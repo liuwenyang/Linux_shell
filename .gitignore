@@ -1,0 +1,9 @@
+dist/
+client/client/
+build/
+.history/
+.vscode/
+.svn/
+.git/
+*.log
+*.tmp
