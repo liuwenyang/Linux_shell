@@ -1,9 +1,17 @@
 dist/
 client/client/
 build/
+mc-build/
+cmake-build-debug/
+.verysync
 .history/
 .vscode/
 .svn/
 .git/
+.idea/
+.DS_Store
+tags
 *.log
 *.tmp
+*.m~
+*.pyc
