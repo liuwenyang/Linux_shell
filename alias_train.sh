@@ -6,7 +6,7 @@ alias csv='cd /home/storage/load/train/data/lidar/csv'
 alias yaml='cd /home/storage/load/config' 
 alias om='cd /home/storage/load/models' 
 alias zc='cd /home/storage/load/client' 
-
+alias cz='cd /home/storage/matrixai/cz/project' 
 
 #快捷操作
 alias log-c='logc > $docker_log_path/$(now)_client.log && cd $docker_log_path && ls'
