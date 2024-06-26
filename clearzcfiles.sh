@@ -157,8 +157,8 @@ function clearhistory() {
 #启动定时清理文件夹任务
 function startclearfilstask() {
   systemctl stop clearzcfiles.timer 2>/dev/null
-  echo -e "[Unit]\nDescription=Periodic cleaning zc files\n\n[Timer]\nOnCalendar=*-*-* 01:00:00\nRandomizedDelaySec=60\nUnit=clearzcfiles.service\n\n[Install]\nWantedBy=timers.target" >/etc/systemd/system/clearzcfiles.timer
-  echo -e "[Unit]\nDescription=Periodic cleaning zc files\n\n[Timer]\nOnCalendar=*-*-* 06:00:00\nRandomizedDelaySec=60\nUnit=watchclearzcfiles.service\n\n[Install]\nWantedBy=timers.target" >/etc/systemd/system/watchclearzcfiles.timer
+  echo -e "[Unit]\nDescription=Periodic cleaning zc files\n\n[Timer]\nOnCalendar=*-*-* 01:00:00\nPersistent=true\nRandomizedDelaySec=60\nUnit=clearzcfiles.service\n\n[Install]\nWantedBy=timers.target" >/etc/systemd/system/clearzcfiles.timer
+  echo -e "[Unit]\nDescription=Periodic cleaning zc files\n\n[Timer]\nOnCalendar=*-*-* 06:00:00\nPersistent=true\nRandomizedDelaySec=60\nUnit=watchclearzcfiles.service\n\n[Install]\nWantedBy=timers.target" >/etc/systemd/system/watchclearzcfiles.timer
   echo -e "[Unit]\nDescription=Periodic cleaning zc files\n\n[Service]\nExecStart=/bin/bash  "$(pwd)"/clearzcfiles.sh -z\nRestart=on-failure\nRestartSec=10s" >/etc/systemd/system/clearzcfiles.service
   echo -e "[Unit]\nDescription=Periodic cleaning zc files\n\n[Service]\nExecStart=/bin/bash  "$(pwd)"/clearzcfiles.sh -w\nRestart=on-failure\nRestartSec=10s" >/etc/systemd/system/watchclearzcfiles.service
   echo "清理文件夹任务的清理脚本工作文件路径为$(pwd)"
@@ -179,7 +179,7 @@ function startclearfilstask() {
 #启动定时清理docker日志任务
 function startcleardockerlogtask() {
   systemctl stop clearzcdockerlogs.timer 2>/dev/null
-  echo -e "[Unit]\nDescription=Periodic cleaning zc docker logs\n\n[Timer]\nOnCalendar=Sun *-*-* 02:00:00\nRandomizedDelaySec=60\nUnit=clearzcdockerlogs.service\n\n[Install]\nWantedBy=timers.target" >/etc/systemd/system/clearzcdockerlogs.timer
+  echo -e "[Unit]\nDescription=Periodic cleaning zc docker logs\n\n[Timer]\nOnCalendar=Sun *-*-* 02:00:00\nPersistent=true\nRandomizedDelaySec=60\nUnit=clearzcdockerlogs.service\n\n[Install]\nWantedBy=timers.target" >/etc/systemd/system/clearzcdockerlogs.timer
   echo -e "[Unit]\nDescription=Periodic cleaning zc docker logs\n\n[Service]\nExecStart=/bin/bash "$(pwd)"/clearzcfiles.sh -d" >/etc/systemd/system/clearzcdockerlogs.service
   systemctl start clearzcdockerlogs.timer 2>/dev/null
   systemctl enable clearzcdockerlogs.timer 2>/dev/null
