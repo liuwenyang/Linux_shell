@@ -1,6 +1,6 @@
 #!/bin/bash
 # 设置保留文件夹数
-saveNum=5
+saveNum=15
 
 # 设置要处理的文件夹数组
 declare -a paths=(
@@ -34,7 +34,7 @@ for path in "${paths[@]}"; do
     rm -rf $oldest_dir
 
     # 打印完成消息到日志文件
-    echo "删除 $path 下最旧的 $files_to_delete 个文件夹完成。" > clear.log
+    echo "删除 $oldest_dir 完成。" > clear.log
 
     # 切换回原始目录
     cd -
