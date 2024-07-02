@@ -7,7 +7,7 @@ alias yaml='cd /home/storage/load/config'
 alias om='cd /home/storage/load/models' 
 alias zc='cd /home/storage/load/client' 
 alias cz='cd /home/storage/matrixai/cz/project' 
-
+alias g0='docker logs --tail=1000 cli > /home/storage/matrixai/cz/zeroPoint.log && python3 /home/storage/matrixai/cz/zeroPoint.py'
 #快捷操作
 alias log-c='logc > $docker_log_path/$(now)_client.log && cd $docker_log_path && ls'
 alias log-m='logm > $docker_log_path/$(now)_server.log && cd $docker_log_path && ls'
