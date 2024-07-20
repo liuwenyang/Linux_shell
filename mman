@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # 查找文件
 search_file="$HOME/.bashrc"
 # 开始行标志
@@ -6,9 +7,19 @@ start_string="###beginofchenzhen'salias###"
 # 结束行标志
 end_string="###endofchenzhen'salias###"
 # 汽车组开始行标志
-start_string_car="###beginofchenzhen'salias_car###"
+start_string_truck="###beginofchenzhen'salias_truck###"
 # 汽车组结束行标志
-end_string_car="###endofchenzen'salias_car###"
+end_string_truck="###endofchenzen'salias_truck###"
+#火车组开始行标志
+start_string_train="###beginofchenzhen'salias_train###"
+#火车组结束行标志
+end_string_train="###endofchenzhen'salias_train###"
+
+# 检查文件是否存在
+if [ ! -f "$search_file" ]; then
+    echo "文件 $search_file 不存在。"
+    exit 1
+fi
 
 # 函数：打印指定开始和结束标记之间的内容
 awk_print() {
@@ -18,16 +29,37 @@ awk_print() {
     flag && /^alias / {sub(/^alias /, ""); print}' "$3"
 }
 
-if [ 1 ]; then
+#函数 打印点位
+awk_print_V1() {
 
-# 打印起始内容和结束内容这之间的行
-awk_print "$start_string" "$end_string" "$search_file"
 
-awk_print "$start_string_car" "$end_string_car" "$search_file"
+}
+#火车所有alias命令
+if [ "$1" -eq 1 ]; then
+    awk_print "$start_string_train" "$end_string_train" "$search_file"
+#汽车所有alias命令
+if [ "$1" -eq 2 ]; then
+    awk_print "$start_string_truck" "$end_string_truck" "$search_file"
+#火车快捷路径
+if [ "$1" -eq 3 ]; then
+    echo 火车快捷路径
+    awk_print "$start_string_train" "$end_string_train" "$search_file" | grep -E 'cd /'
+#火车点位
+if [ "$1" -eq 4 ]; then
+    echo 火车点位
+    awk_print "$start_string_train" "$end_string_train" "$search_file" | grep -E 'xxd -r -p'
+#汽车组快捷路径
+if [ "$1" -eq 5 ]; then
+    echo 汽车组快捷路径
+    awk_print "$start_string_truck" "$end_string_truck" "$search_file" | grep -E 'cd /'
+else
+    # 通用alias命令
+    echo 通用alias命令
+    awk_print "$start_string" "$end_string" "$search_file"
 fi
 
 # 输出到屏幕
-cat << EOF
+cat <<EOF
 bak 快速带时间戳备份
 修改请输入
 vi ~/.bashrc

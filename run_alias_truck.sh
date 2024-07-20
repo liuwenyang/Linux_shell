@@ -13,9 +13,9 @@ if [ -z "$$zc_path" ]; then
 fi
 
 # 开始行标志
-start_string="###beginofchenzhen'salias_car###"
+start_string="###beginofchenzhen'salias_truck###"
 # 结束行标志
-end_string="###endofchenzhen'salias_car###"
+end_string="###endofchenzhen'salias_truck###"
 
 # 查找包含起始内容和结束内容的行，并删除这之间的行
 start_line=$(grep -n "$start_string" ~/.bashrc | cut -d ':' -f1)

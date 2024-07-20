@@ -62,7 +62,7 @@ bash $script_path/run_images.sh
 # fi
 bash $script_path/run_alias_general.sh
 
-bash $script_path/run_alias_car.sh
+bash $script_path/run_alias_truck.sh
 
 bash $script_path/run_clearzcfiles.sh
 

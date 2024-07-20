@@ -6,7 +6,8 @@ check_and_install() {
     if ! dpkg -l | grep -qw $package; then
         echo "$package 未安装，正在安装..."
         echo
-        sudo apt-get install -y $package
+        #sudo apt-get install -y $package
+        apt install -y $package
     else
         echo "$package 已安装，跳过..."
     fi
@@ -18,7 +19,7 @@ echo "正在更新软件包信息..."
 sudo apt-get update -y
 
 # 定义需要检查的软件列表
-packages=("vim" "tree" "wget" "netcat" "dos2unix" "lsof" "tcpdump" "traceroute" "p7zip-full" "docker-compose" "ntpdate" "openssh-server" "at" "netcat" "htop" "curl" "telnet" "vlc" "hardinfo" "git" "subversion")
+packages=("vim" "tree" "cgroupfs-mount" "wget" "tmux" "netcat" "dos2unix" "lsof" "tcpdump" "traceroute" "p7zip-full" "docker-compose" "ntpdate" "openssh-server" "at" "netcat" "htop" "curl" "telnet" "vlc" "hardinfo" "git" "subversion" "lm-sensors")
 
 # 遍历软件列表，检查并安装
 for package in "${packages[@]}"; do
