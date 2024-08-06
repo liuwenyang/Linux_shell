@@ -38,7 +38,8 @@ alias 0401='echo -n "8D08200401000000" | xxd -r -p | nc localhost 6669 && echo �
 alias 1402='echo -n "8D08201402000000" | xxd -r -p | nc localhost 6669 && echo 读车号 完成'
 alias 1404='echo -n "8D08201404000000" | xxd -r -p | nc localhost 6669 && echo 读车号 写plc 完成'
 alias 302='echo -n "8D08200403020000" | xxd -r -p | nc localhost 6669 && echo 装车完成之后  重新读plc装车数据 发送给web完成'
-alias 0001='echo -n "0001" | xxd -r -p | nc localhost 12345'
+
+alias 0001='docker exec -it capture sh -c "echo '0001' > /dev/stdin" && sleep 2 && echo "请打开  /home/storage/capture  获取捕获结果"'
 
 #火车组定制化功能
 alias logc="docker logs -f --tail 1000 cli | grep -E '车坑|归零|溜槽|配煤|从关到位变成开|检测到|发送定量仓闸板开指令|检测到两个闸板同时开|车头装车,溜槽下压; 当前位置|9181\] 车节号:|溜槽提升至安全高度|当前装车高度:|上一节高度|匹配到均值:|溜槽提升|probability'" 
