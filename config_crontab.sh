@@ -66,12 +66,6 @@ fi
 
 
 
-
-
-
-
-
-
 # 重启cron服务以确保新的任务生效
 sudo systemctl restart cron
 sudo service cron restart
