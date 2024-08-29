@@ -42,7 +42,7 @@ alias 302='echo -n "8D08200403020000" | xxd -r -p | nc localhost 6669 && echo �
 alias 0001='docker exec -it capture sh -c "echo '0001' > /dev/stdin" && sleep 2 && echo "输入如下命令进入日志保存文件夹获取日志" && echo "cd  /home/storage/capture"'
 alias cap1='echo "start" > /home/storage/capture/start.txt && echo "输入如下命令进入日志保存文件夹获取日志" && echo "cd /home/storage/capture" && echo "等待十秒左右即可缓存完视频 即可下载"'
 #火车组定制化功能
-alias logc="docker logs -f --tail 1000 cli | grep -E '车坑|归零|溜槽|配煤|从关到位变成开|检测到|发送定量仓闸板开指令|检测到两个闸板同时开|车头装车,溜槽下压; 当前位置|9181\] 车节号:|溜槽提升至安全高度|当前装车高度:|上一节高度|匹配到均值:|溜槽提升|probability'" 
+alias logc="docker logs -f --tail 1000 cli | grep -E '车坑|归零|溜槽|配煤|从关到位变成开|流速|检测到|发送定量仓闸板开指令|检测到两个闸板同时开|车头装车,溜槽下压; 当前位置|9181\] 车节号:|溜槽提升至安全高度|当前装车高度:|上一节高度|匹配到均值:|溜槽提升|probability'" 
 alias logm="docker logs -f --tail 800 ser"
 alias rs-c="docker restart cli" 
 alias rs-m="docker restart ser"
