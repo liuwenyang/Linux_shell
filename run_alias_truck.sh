@@ -18,22 +18,22 @@ start_string="###beginofchenzhen'salias_truck###"
 end_string="###endofchenzhen'salias_truck###"
 
 # 查找包含起始内容和结束内容的行，并删除这之间的行
-start_line=$(grep -n "$start_string" ~/.bashrc | cut -d ':' -f1)
-end_line=$(grep -n "$end_string" ~/.bashrc | cut -d ':' -f1)
+start_line=$(grep -n "$start_string" /etc/bashrc | cut -d ':' -f1)
+end_line=$(grep -n "$end_string" /etc/bashrc | cut -d ':' -f1)
 
-if  grep -q "$start_string" ~/.bashrc && grep -q "$end_string" ~/.bashrc ; then
+if  grep -q "$start_string" /etc/bashrc && grep -q "$end_string" /etc/bashrc ; then
    echo ".bashrc被alias_car修改过"
-   sed -i "/$start_string/,/$end_string/d" ~/.bashrc && echo 清理.bashrc成功
+   sed -i "/$start_string/,/$end_string/d" /etc/bashrc && echo 清理.bashrc成功
 else
    echo ".bashrc未alias_car被修改过"
 fi
 
 # 打印开始行标志
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 $start_string
 EOF
 
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 #汽车组快捷路径
 alias pcd='cd /home/storage/data/lidar/' 
 alias img='cd /home/storage/data/video/img/result/001' 
@@ -43,7 +43,7 @@ alias zc='cd /home/storage/zc'
 
 EOF
 #带''是为了防止打印字符转义
-cat << 'EOF' >> ~/.bashrc
+cat << 'EOF' >> /etc/bashrc
 
 alias log-c='logc > $docker_log_path/$(now)_client.log && cd $docker_log_path && ls'
 alias log-m='logm > $docker_log_path/$(now)_server.log && cd $docker_log_path && ls'
@@ -70,12 +70,12 @@ cd /home/storage/zc/
 EOF
 
 #打印结束行标志
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 $end_string
 EOF
 # chmod 777 docker-logs-localtime
 # mv docker-logs-localtime /usr/local/bin
-source ~/.bashrc && echo ".bashrc修改完成"
+source /etc/bashrc && echo ".bashrc修改完成"
 
 echo 请手动执行如下命令
-echo "source ~/.bashrc" 
+echo "source /etc/bashrc" 

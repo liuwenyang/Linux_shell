@@ -6,22 +6,22 @@ start_string="###beginofchenzhen'salias###"
 end_string="###endofchenzhen'salias###"
 
 # 查找包含起始内容和结束内容的行，并删除这之间的行
-start_line=$(grep -n "$start_string" ~/.bashrc | cut -d ':' -f1)
-end_line=$(grep -n "$end_string" ~/.bashrc | cut -d ':' -f1)
+start_line=$(grep -n "$start_string" /etc/bashrc | cut -d ':' -f1)
+end_line=$(grep -n "$end_string" /etc/bashrc | cut -d ':' -f1)
 
-if  grep -q "$start_string" ~/.bashrc && grep -q "$end_string" ~/.bashrc ; then
-   echo ".bashrc被run_alias_general修改过"
-   sed -i "/$start_string/,/$end_string/d" ~/.bashrc && echo 清理.bashrc成功
+if  grep -q "$start_string" /etc/bashrc && grep -q "$end_string" /etc/bashrc ; then
+   echo "/etc/bashrc被run_alias_general修改过"
+   sed -i "/$start_string/,/$end_string/d" /etc/bashrc && echo 清理/etc/bashrc成功
 else
-   echo ".bashrc未被run_alias_general修改过"
+   echo "/etc/bashrc未被run_alias_general修改过"
 fi
 # 打印开始行标志
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 $start_string
 EOF
 
 #带''是为了防止打印字符转义
-cat << 'EOF' >> ~/.bashrc
+cat << 'EOF' >> /etc/bashrc
 
 alias ll='ls -lhtc --color=auto'
 alias ls='ls -A --color=auto'
@@ -94,7 +94,7 @@ echo 输入mman查看快捷命令
 EOF
 
 #打印结束行标志
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 $end_string
 EOF
 #/usr/local/bin/czexit &
@@ -103,6 +103,6 @@ mv bak /usr/local/bin
 mv mman /usr/local/bin
 # mv czexit /usr/local/bin
 echo 请手动执行如下命令
-echo "source ~/.bashrc" 
-source /root/.bashrc && echo ".bashrc修改完成"
+echo "source /etc/bashrc" 
+source /root//etc/bashrc && echo "/etc/bashrc修改完成"
 
