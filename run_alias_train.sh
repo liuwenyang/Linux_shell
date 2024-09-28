@@ -6,22 +6,22 @@ start_string="###beginofchenzhen'salias_train###"
 end_string="###endofchenzhen'salias_train###"
 
 # 查找包含起始内容和结束内容的行，并删除这之间的行
-start_line=$(grep -n "$start_string" ~/.bashrc | cut -d ':' -f1)
-end_line=$(grep -n "$end_string" ~/.bashrc | cut -d ':' -f1)
+start_line=$(grep -n "$start_string" /etc/bashrc | cut -d ':' -f1)
+end_line=$(grep -n "$end_string" /etc/bashrc | cut -d ':' -f1)
 
-if  grep -q "$start_string" ~/.bashrc && grep -q "$end_string" ~/.bashrc ; then
+if  grep -q "$start_string" /etc/bashrc && grep -q "$end_string" /etc/bashrc ; then
    echo ".bashrc被alias_car修改过"
-   sed -i "/$start_string/,/$end_string/d" ~/.bashrc && echo 清理.bashrc成功
+   sed -i "/$start_string/,/$end_string/d" /etc/bashrc && echo 清理.bashrc成功
 else
    echo ".bashrc未alias_car被修改过"
 fi
 
 # 打印开始行标志
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 $start_string
 EOF
 
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 #火车组快捷路径
 alias pcd='cd /home/storage/load/train/data/lidar/pcd' 
 alias csv='cd /home/storage/load/train/data/lidar/csv' 
@@ -57,14 +57,14 @@ zc
 EOF
 
 #打印结束行标志
-cat << EOF >> ~/.bashrc
+cat << EOF >> /etc/bashrc
 $end_string
 EOF
 # chmod 777 docker-logs-localtime
 # mv docker-logs-localtime /usr/local/bin
-source ~/.bashrc && echo ".bashrc修改完成"
+source /etc/bashrc && echo ".bashrc修改完成"
 
 echo 请手动执行如下命令
-echo "source ~/.bashrc" 
+echo "source /etc/bashrc" 
 #alias czlog='docker logs --since=$(date -d "2 hours ago" "+%Y-%m-%dT%H:%M:%S") --until=$(date "+%Y-%m-%dT%H:%M:%S") cli > $(date -d "2 hours ago" "+%Y-%m-%dT%H:%M:%S")_cli.log'
 #无用 alias czlog='docker logs --since=2024-08-21T14:59:53 --until=2024-08-21T16:59:53 cli > 2024-08-21T14:59:53_cli.log'

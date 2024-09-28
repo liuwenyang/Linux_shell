@@ -62,6 +62,6 @@ fi
 cat <<EOF
 bak 快速带时间戳备份
 修改请输入
-vi ~/.bashrc
-改完后执行 source ~/.bashrc
+vi /etc/bashrc
+改完后执行 source /etc/bashrc
 EOF
