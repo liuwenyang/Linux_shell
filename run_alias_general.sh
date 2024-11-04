@@ -104,5 +104,5 @@ mv mman /usr/local/bin
 # mv czexit /usr/local/bin
 echo 请手动执行如下命令
 echo "source /etc/bashrc" 
-source /root//etc/bashrc && echo "/etc/bashrc修改完成"
+source /root/etc/bashrc && echo "/etc/bashrc修改完成"
 
