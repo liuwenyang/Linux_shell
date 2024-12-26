@@ -49,7 +49,7 @@ alias log-c='logc > $docker_log_path/$(now)_client.log && cd $docker_log_path &&
 alias log-m='logm > $docker_log_path/$(now)_server.log && cd $docker_log_path && ls'
 alias up-y='cp /home/storage/config/yaml/config.yaml /home/storage/config/yaml/config.yaml_$(now) && mv /tmp/config.yaml /home/storage/zc/ ; mv /home/storage/zc/config.yaml /home/storage/config/yaml ; chmod 777 /home/storage/config/yaml/config.yaml && rs-c'
 
-#小站转换识别模型的环境变量
+#nx小站转换识别模型的环境变量
 export PATH=/usr/local/cuda-10.2/bin:$PATH
 export PATH=$PATH:/opt/cmake-3.24.1/bin
 export PATH=/usr/src/tensorrt/bin:$PATH

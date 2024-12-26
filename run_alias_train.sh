@@ -56,6 +56,20 @@ zc
 
 EOF
 
+
+#检查系统是否为arm架构
+if [[ $(uname -m) == 'aarch64' ]]; then
+    echo "CPU为arm64架构 添加nx环境变量"
+    cat << EOF >> /etc/bashrc
+#nx小站转换识别模型的环境变量
+export PATH=/usr/local/cuda-10.2/bin:$PATH
+export PATH=$PATH:/opt/cmake-3.24.1/bin
+export PATH=/usr/src/tensorrt/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:$LD_LIBRARY_PATH
+EOF
+fi
+
+
 #打印结束行标志
 cat << EOF >> /etc/bashrc
 $end_string
