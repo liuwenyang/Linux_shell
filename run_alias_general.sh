@@ -106,3 +106,10 @@ echo 请手动执行如下命令
 echo "source /etc/bashrc" 
 source /etc/bashrc && echo "/etc/bashrc修改完成"
 
+#在/root/.bashrc中添加source /etc/bashrc
+if grep -q "source /etc/bashrc" /root/.bashrc; then
+   echo "/root/.bashrc被run_alias_general修改过"
+else
+   echo "/root/.bashrc未被run_alias_general修改过"
+   echo "source /etc/bashrc" >> /root/.bashrc
+fi
