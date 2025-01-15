@@ -78,6 +78,12 @@ EOF
 # mv docker-logs-localtime /usr/local/bin
 source /etc/bashrc && echo ".bashrc修改完成"
 
+
+#如果没有/home/storage/matrixai/cz/project文件路径则创建
+if [ ! -d "/home/storage/matrixai/cz/project" ]; then
+    echo "创建/home/storage/matrixai/cz/project文件夹"
+    mkdir -p /home/storage/matrixai/cz/project
+fi
 echo 请手动执行如下命令
 echo "source /etc/bashrc" 
 #alias czlog='docker logs --since=$(date -d "2 hours ago" "+%Y-%m-%dT%H:%M:%S") --until=$(date "+%Y-%m-%dT%H:%M:%S") cli > $(date -d "2 hours ago" "+%Y-%m-%dT%H:%M:%S")_cli.log'
