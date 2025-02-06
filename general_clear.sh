@@ -4,9 +4,13 @@ saveNum=15
 
 # 设置要处理的文件夹数组
 declare -a paths=(
-    "/home/storage/load/train/data/lidar/csv"
+    
     "/home/storage/load/train/data/lidar/pcd"
 )
+<<'COMMENT'
+"/home/storage/load/train/data/lidar/csv"
+csv历史日志被我移除掉了 因为占空间不大而且比较有用
+COMMENT
 
 # 遍历路径数组
 for path in "${paths[@]}"; do
