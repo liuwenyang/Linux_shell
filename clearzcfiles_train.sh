@@ -89,7 +89,7 @@ function getsavedays() {
   return 0
 }
 
-#清理文件
+#清理文件夹
 function clearfiles() {
   local filepath=$1
   local nums=$(ls -d $filepath | wc -l)
@@ -99,6 +99,23 @@ function clearfiles() {
     local files=$(ls -rtd $filepath | head -n $clearnums)
     echo $files >>$DIR"/clearzcfiles.log"
     rm -rf $files
+  fi
+  return 0
+}
+
+#清理文件夹下的文件
+function clearfolderfiles() {
+  local filepath=$1
+  local pattern=$2
+  if [ -d "$filepath" ]; then
+    local nums=$(ls -rt "$filepath"/$pattern 2>/dev/null | wc -l)
+    if [ $nums -gt $savedays ]; then
+      clearnums=$(expr $nums - $savedays)
+      echo "需要清理"$clearnums"个文件"
+      local files=$(ls -rt "$filepath"/$pattern 2>/dev/null | head -n $clearnums)
+      echo $files >>$DIR"/clearzcfiles.log"
+      rm -rf $files
+    fi
   fi
   return 0
 }
@@ -139,7 +156,7 @@ function clearhistory() {
   echo "开始清理pcd~"
   clearfiles "/home/storage/load/train/data/lidar/pcd/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   echo "开始清理plc通信指令存储日志~"
-  clearfiles "/home/storage/load/plc_log/"
+  clearfolderfiles "/home/storage/load/plc_log/" "*.log"
   # echo "开始清理统一的日志~"
   # clearfiles "/home/storage/data/lidar/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   # echo "开始清理自助原图片~"

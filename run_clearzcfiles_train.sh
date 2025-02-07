@@ -1,26 +1,26 @@
 #!/bin/bash
 
 if [ -z "$clearzcfiles_path" ]; then
-  clearzcfiles_path=/opt/matrix/middleware
+  clearzcfiles_path=/home/storage/load/train
 fi
 if [ -z "$clear_script_name" ]; then
-  clear_script_name=clearzcfiles
+  clear_script_name=clearzcfiles_train
 fi
-if [ -z "$deploy_path" ]; then
-  deploy_path=/home
-fi
-script_path=$deploy_path/${PWD}
 
-cd $script_path
 pwd
-mkdir -p $clearzcfiles_path
+#如果clearzcfiles_path不存在，创建
+if [ ! -d "$clearzcfiles_path" ]; then
+  mkdir -p $clearzcfiles_path
+fi
+
+
 #创建清理脚本文件夹完成
-mv $clear_script_name* $clearzcfiles_path && echo && echo --------------移动清理脚本完成-------------- && echo
+mv clearzcfiles_train.sh $clearzcfiles_path && echo && echo --------------移动清理脚本完成-------------- && echo
 
 
 cd $clearzcfiles_path
 
-echo 清理脚本安放目录为${PWD}
+echo 清理脚本安放目录为$clearzcfiles_path
 chmod 777 $clearzcfiles_path -R 
 $clearzcfiles_path/$clear_script_name.sh -s 15
 $clearzcfiles_path/$clear_script_name.sh -l 
@@ -64,13 +64,7 @@ if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -w"; then
 else
     echo ""$clearzcfiles_path/$clear_script_name.sh -w"这个任务已存在"
 fi
-if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -time"; then
-    # 如果不存在，添加到crontab
-    (crontab -l; echo "0 4 * * 1 $clearzcfiles_path/$clear_script_name.sh -time") | crontab -
-    echo ""$clearzcfiles_path/$clear_script_name.sh -time"已添加到crontab中"
-else
-    echo ""$clearzcfiles_path/$clear_script_name.sh -time"这个任务已存在"
-fi
+
 # 重启cron服务以确保新的任务生效
 sudo systemctl restart cron
 

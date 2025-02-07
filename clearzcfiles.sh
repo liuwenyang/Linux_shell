@@ -89,7 +89,7 @@ function getsavedays() {
   return 0
 }
 
-#清理文件
+#清理文件夹
 function clearfiles() {
   local filepath=$1
   local nums=$(ls -d $filepath | wc -l)
