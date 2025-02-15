@@ -10,7 +10,7 @@ savedays=15
 #最少保存天数
 readonly minsavedays=2
 #docker保留行数
-readonly savelines=5000000
+readonly savelines=500000
 #脚本路径
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -97,7 +97,9 @@ function clearfiles() {
     clearnums=$(expr $nums - $savedays)
     echo "需要清理"$clearnums"个文件夹"
     local files=$(ls -rtd $filepath | head -n $clearnums)
-    echo $files >>$DIR"/clearzcfiles.log"
+    for file in $files; do
+      echo "$file" >>$DIR"/clearzcfiles.log"
+    done
     rm -rf $files
   fi
   return 0
@@ -113,7 +115,9 @@ function clearfolderfiles() {
       clearnums=$(expr $nums - $savedays)
       echo "需要清理"$clearnums"个文件"
       local files=$(ls -rt "$filepath"/$pattern 2>/dev/null | head -n $clearnums)
-      echo $files >>$DIR"/clearzcfiles.log"
+      for file in $files; do
+        echo "$file" >>$DIR"/clearzcfiles.log"
+      done
       rm -rf $files
     fi
   fi
@@ -157,6 +161,8 @@ function clearhistory() {
   clearfiles "/home/storage/load/train/data/lidar/pcd/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   echo "开始清理plc通信指令存储日志~"
   clearfolderfiles "/home/storage/load/plc_log/" "*.log"
+  echo "开始清理dlc_pcd~"
+  clearfiles "/home/storage/load/train/data/lidar/dlc_pcd/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   # echo "开始清理统一的日志~"
   # clearfiles "/home/storage/data/lidar/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   # echo "开始清理自助原图片~"
@@ -261,7 +267,7 @@ function main() {
       startcleardockerlogtask
       ;;
     o)
-      echo "开始清理docker日志~"
+      echo "开始清理保留行数以外的docker日志~"
       cleardockerpartlogs
       ;;
     w)
