@@ -180,7 +180,7 @@ function startclearfilstask() {
 function startcleardockerlogtask() {
   systemctl stop clearzcdockerlogs.timer 2>/dev/null
   echo -e "[Unit]\nDescription=Periodic cleaning zc docker logs\n\n[Timer]\nOnCalendar=Sun *-*-* 02:00:00\nPersistent=true\nRandomizedDelaySec=60\nUnit=clearzcdockerlogs.service\n\n[Install]\nWantedBy=timers.target" >/etc/systemd/system/clearzcdockerlogs.timer
-  echo -e "[Unit]\nDescription=Periodic cleaning zc docker logs\n\n[Service]\nExecStart=/bin/bash "$(pwd)"/clearzcfiles.sh -d" >/etc/systemd/system/clearzcdockerlogs.service
+  echo -e "[Unit]\nDescription=Periodic cleaning zc docker logs\n\n[Service]\nExecStart=/bin/bash "$(pwd)"/clearzcfiles.sh -o" >/etc/systemd/system/clearzcdockerlogs.service
   systemctl start clearzcdockerlogs.timer 2>/dev/null
   systemctl enable clearzcdockerlogs.timer 2>/dev/null
   local info=$(systemctl status clearzcdockerlogs.timer | grep "Active: active")
