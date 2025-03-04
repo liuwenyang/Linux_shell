@@ -70,7 +70,7 @@ function cleardockerpartlogs() {
       lines=$(wc -l <$log)
       echo "clean logs : $log,lines : $lines" >>$DIR"/clearzcfiles.log"
       if [ $lines -gt $savelines ]; then
-        sl=$(expr $lines + $savelines)
+        sl=$(expr $lines - $savelines)
         sed -i "1,${sl}d" $log
       fi
     done

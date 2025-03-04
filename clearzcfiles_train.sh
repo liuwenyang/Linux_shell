@@ -10,7 +10,7 @@ savedays=15
 #最少保存天数
 readonly minsavedays=2
 #docker保留行数
-readonly savelines=500000
+readonly savelines=5000000
 #脚本路径
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -70,7 +70,7 @@ function cleardockerpartlogs() {
       lines=$(wc -l <$log)
       echo "clean logs : $log,lines : $lines" >>$DIR"/clearzcfiles.log"
       if [ $lines -gt $savelines ]; then
-        sl=$(expr $lines + $savelines)
+        sl=$(expr $lines - $savelines)
         sed -i "1,${sl}d" $log
       fi
     done
@@ -162,7 +162,7 @@ function clearhistory() {
   echo "开始清理plc通信指令存储日志~"
   clearfolderfiles "/home/storage/load/plc_log/" "*.log"
   echo "开始清理dlc_pcd~"
-  clearfiles "/home/storage/load/train/data/lidar/dlc_pcd/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
+  clearfiles "/home/storage/load/train/data/lidar/dlc/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   # echo "开始清理统一的日志~"
   # clearfiles "/home/storage/data/lidar/[2-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
   # echo "开始清理自助原图片~"
@@ -220,25 +220,25 @@ function checkservice() {
   local state=$(systemctl is-failed clearzcdockerlogs.timer)
   if [[ "$state" != "active" ]]; then
     echo -e "检测到清理文件任务失败~！"
-    $(pwd)/clearzcfiles.sh -l
+    $(pwd)/clearzcfiles_train.sh -l
   fi
 
   state=$(systemctl is-failed clearzcdockerlogs.service | grep "active")
   if [[ "$state" != "active" ]]; then
     echo -e "检测到清理文件任务失败~！"
-    $(pwd)/clearzcfiles.sh -l
+    $(pwd)/clearzcfiles_train.sh -l
   fi
 
   state=$(systemctl is-failed clearzcfiles.timer)
   if [[ "$state" != "active" ]]; then
     echo -e "检测到清理文件任务失败~！clearzcfiles.timer"
-    $(pwd)/clearzcfiles.sh -t
+    $(pwd)/clearzcfiles_train.sh -t
   fi
 
   state=$(systemctl is-failed clearzcfiles.service)
   if [[ "$state" != "active" ]]; then
     echo -e "检测到清理文件任务失败~！clearzcfiles.service"
-    $(pwd)/clearzcfiles.sh -t
+    $(pwd)/clearzcfiles_train.sh -t
   fi
 }
 

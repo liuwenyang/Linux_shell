@@ -13,17 +13,18 @@ if [ ! -d "$clearzcfiles_path" ]; then
   mkdir -p $clearzcfiles_path
 fi
 
-
+#赋权
+chmod 777 $clear_script_name.sh
 #创建清理脚本文件夹完成
-mv clearzcfiles_train.sh $clearzcfiles_path && echo && echo --------------移动清理脚本完成-------------- && echo
+mv $clear_script_name.sh $clearzcfiles_path && echo && echo --------------移动清理脚本完成-------------- && echo
 
 
 cd $clearzcfiles_path
 
 echo 清理脚本安放目录为$clearzcfiles_path
-chmod 777 $clearzcfiles_path -R 
-$clearzcfiles_path/$clear_script_name.sh -s 15
-$clearzcfiles_path/$clear_script_name.sh -l 
+#chmod 777 $clearzcfiles_path -R 
+$clearzcfiles_path/$clear_script_name.sh -s 10
+$clearzcfiles_path/$clear_script_name.sh -o 
 $clearzcfiles_path/$clear_script_name.sh -t
 
 sudo systemctl start clearzcfiles.service
@@ -43,12 +44,12 @@ echo
 echo
 #启用crontab定时
 
-if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -d"; then
+if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -o"; then
     # 如果不存在，添加到crontab
-    (crontab -l; echo "0 1 * * 1 $clearzcfiles_path/$clear_script_name.sh -d") | crontab -
-    echo ""$clearzcfiles_path/$clear_script_name.sh -d"已添加到crontab中"
+    (crontab -l; echo "0 1 * * 1 $clearzcfiles_path/$clear_script_name.sh -o") | crontab -
+    echo ""$clearzcfiles_path/$clear_script_name.sh -o"已添加到crontab中"
 else
-    echo ""$clearzcfiles_path/$clear_script_name.sh -d"这个任务已存在"
+    echo ""$clearzcfiles_path/$clear_script_name.sh -o"这个任务已存在"
 fi
 if ! crontab -l | grep  "$clearzcfiles_path/$clear_script_name.sh -z"; then
     # 如果不存在，添加到crontab
