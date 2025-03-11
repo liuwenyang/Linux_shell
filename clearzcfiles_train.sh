@@ -51,6 +51,10 @@ function cleardockerlogs() {
 }
 
 #清理docker日志
+
+#docker 日志是顺序追加的，新日志写到文件尾部，最旧的日志位于文件顶部。
+#如果想清理最旧的日志，应当从日志文件的第一行开始删除，而保留末尾最新的日志记录
+
 function cleardockerpartlogs() {
   echo $(date) "开始清理docker日志" >>$DIR"/clearzcfiles.log"
   rootp=$(docker info | grep "Docker Root Dir")
