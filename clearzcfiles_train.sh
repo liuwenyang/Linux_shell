@@ -30,7 +30,7 @@ function usage() {
 
 #清理docker日志
 function cleardockerlogs() {
-  echo $(date) "开始清理docker日志" >>$DIR"/clearzcfiles.log"
+  echo $(date) "开始清理整个docker日志" >>$DIR"/clearzcfiles.log"
   rootp=$(docker info | grep "Docker Root Dir")
   if [[ $rootp =~ "/var/lib/docker" ]]; then
     logs=$(find /var/lib/docker/containers/ -name *-json.log)
@@ -56,7 +56,7 @@ function cleardockerlogs() {
 #如果想清理最旧的日志，应当从日志文件的第一行开始删除，而保留末尾最新的日志记录
 
 function cleardockerpartlogs() {
-  echo $(date) "开始清理docker日志" >>$DIR"/clearzcfiles.log"
+  echo $(date) "开始清理最旧的$savelines行docker日志" >>$DIR"/clearzcfiles.log"
   rootp=$(docker info | grep "Docker Root Dir")
   if [[ $rootp =~ "/var/lib/docker" ]]; then
     logs=$(find /var/lib/docker/containers/ -name *-json.log)
