@@ -23,7 +23,7 @@ cd $clearzcfiles_path
 
 echo 清理脚本安放目录为$clearzcfiles_path
 #chmod 777 $clearzcfiles_path -R 
-$clearzcfiles_path/$clear_script_name.sh -s 10
+$clearzcfiles_path/$clear_script_name.sh -s 4
 $clearzcfiles_path/$clear_script_name.sh -o 
 $clearzcfiles_path/$clear_script_name.sh -t
 

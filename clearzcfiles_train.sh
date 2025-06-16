@@ -271,8 +271,8 @@ function main() {
       startcleardockerlogtask
       ;;
     o)
-      echo "开始清理保留行数以外的docker日志~"
-      cleardockerpartlogs
+      echo "防止docker无日志 开始不清理保留行数以外的docker日志~"
+      #cleardockerpartlogs
       ;;
     w)
       echo "检测服务运行状态~"
