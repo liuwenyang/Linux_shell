@@ -49,6 +49,8 @@ alias czcd='function _czcd(){ cd "$(ls -d ./*/ | sort -r | tail -n +"$1" | head 
 alias czls='du -sh * | sort -h' 
 alias czmod='sudo chmod 777 * && ll'
 alias dirnum='ls -l | grep "^d" | wc -l'
+alias d2u="sed -i 's/\r//' "
+
 export HISTTIMEFORMAT='%F %T '
 ping(){
    /bin/ping "$@" | while read pong; do echo "$(now): $pong"; done

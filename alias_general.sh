@@ -25,6 +25,8 @@ alias czls='du -sh * | sort -h'
 alias czmod='sudo chmod 777 * && ll'
 alias dirnum='ls -l | grep "^d" | wc -l'
 export HISTTIMEFORMAT='%F %T '
+alias d2u="sed -i 's/\r//' "
+
 ping(){
    /bin/ping "$@" | while read pong; do echo "$(now): $pong"; done
 }
