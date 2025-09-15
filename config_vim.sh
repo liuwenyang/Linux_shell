@@ -2,18 +2,18 @@
 
 
 #带''是为了防止打印字符转义
+#Vim 的配置文件（~/.vimrc）默认只支持纯文本配置命令，注释需要以英文 # 开头，且不能包含非 ASCII 字符（例如中文）。
 cat << 'EOF' >> ~/.vimrc
-#设置显示行号
+" Show line numbers
 set number
 
-#启用语法高亮
+" Enable syntax highlighting
 syntax on
 
-#在底部显示当前光标位置
+" Show cursor position at the bottom
 set ruler
 
-#其他一些常用配置...
-#设置Tab键为4个空格
+" Set tab to 4 spaces
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -21,7 +21,5 @@ set expandtab
 EOF
 
 
-echo 请手动执行如下命令
-echo "source ~/.vimrc" 
-#source /root/.vimrc && echo ".vimrc修改完成"
+echo "重启vim 配置起作用"
 
