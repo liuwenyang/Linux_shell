@@ -19,7 +19,7 @@ echo "正在更新软件包信息..."
 sudo apt-get update -y
 
 # 定义需要检查的软件列表
-packages=("vim" "chrony" "apt-offline" "baobab" "ctop" "tree" "rsync" "cgroupfs-mount" "sysstat" "wget" "tmux" "netcat" "net-tools" "dos2unix" "lsof" "tcpdump" "traceroute" "p7zip-full" "docker-compose" "valgrind" "ntpdate" "openssh-server" "at" "netcat" "htop" "curl" "telnet" "vlc" "hardinfo" "git" "subversion" "lm-sensors" )
+packages=("jq" "vim" "chrony" "apt-offline" "baobab" "ctop" "tree" "rsync" "cgroupfs-mount" "sysstat" "wget" "tmux" "netcat" "net-tools" "dos2unix" "lsof" "tcpdump" "traceroute" "p7zip-full" "docker-compose" "valgrind" "ntpdate" "openssh-server" "at" "netcat" "htop" "curl" "telnet" "vlc" "hardinfo" "git" "subversion" "lm-sensors" )
 
 # 遍历软件列表，检查并安装
 for package in "${packages[@]}"; do
