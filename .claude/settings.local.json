@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:mp.weixin.qq.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
