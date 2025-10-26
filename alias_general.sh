@@ -31,8 +31,7 @@ ping(){
    /bin/ping "$@" | while read pong; do echo "$(now): $pong"; done
 }
 
-
+echo -e "SSH Login Alert\n\n登录账户: $(whoami)\n登录IP: $(echo $SSH_CONNECTION | awk '{print $1}')\n登录时间: $(TZ="Asia/Shanghai" date "+%H:%M:%S")" | mail -s "阿里云主机 $(hostname) ssh登录提醒 " 你的@qq.com
 shopt -s extglob 
 
 
-echo 输入mman查看快捷命令
