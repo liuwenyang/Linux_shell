@@ -15,3 +15,8 @@ tags
 *.tmp
 *.m~
 *.pyc
+
+# AI 助手工具目录
+.claude/
+.cursor/
+.trae/
