@@ -22,6 +22,22 @@ function sshd_config()
         echo 已重启ssh服务
     fi
     #grep '^PermitRootLogin $' /etc/ssh/sshd_config
+    
+    # 修改 ClientAliveInterval
+    sed -i 's/#ClientAliveInterval.*/ClientAliveInterval 60/' /etc/ssh/sshd_config
+    if [ -z "$(grep 'ClientAliveInterval 60' /etc/ssh/sshd_config)" ]; then
+        echo "修改ClientAliveInterval失败"
+    else
+        echo "修改ClientAliveInterval成功"
+    fi
+    
+    # 修改 ClientAliveCountMax
+    sed -i 's/#ClientAliveCountMax.*/ClientAliveCountMax 10/' /etc/ssh/sshd_config
+    if [ -z "$(grep 'ClientAliveCountMax 10' /etc/ssh/sshd_config)" ]; then
+        echo "修改ClientAliveCountMax失败"
+    else
+        echo "修改ClientAliveCountMax成功"
+    fi
 
 }
 
