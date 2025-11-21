@@ -65,6 +65,36 @@ alias rs-m="docker restart $(docker ps | awk 'BEGIN{FS=" "} $3 ~/main/ {print $1
 alias rs-cm="docker restart $(docker ps | awk 'BEGIN{FS=" "} $3 ~/client/ {print $1}') $(docker ps | awk 'BEGIN{FS=" "} $3 ~/main/ {print $1}')" 
 
 
+# 智能ping函数 - 根据系统和shell自动选择路径
+ping(){
+    local ping_cmd
+    # 根据系统和shell选择ping路径
+    if [[ "$OSTYPE" == "darwin"* ]] && [[ "$SHELL" == */zsh ]]; then
+        # Mac系统使用zsh时，使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac系统使用bash时，也使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    else
+        # Linux系统或bash环境，使用/bin/ping
+        ping_cmd="/bin/ping"
+    fi
+    
+    # 检查ping命令是否存在
+    if ! command -v "$ping_cmd" &> /dev/null; then
+        ping_cmd="ping"
+        if ! command -v "$ping_cmd" &> /dev/null; then
+            echo "错误: 系统中找不到 ping 命令"
+            return 1
+        fi
+    fi
+    
+    # 执行ping命令并添加时间戳
+    "$ping_cmd" "$@" | while read -r pong; do
+        echo "$(date '+%Y-%m-%dT%H:%M:%S'): $pong"
+    done
+}
+
 cd /home/storage/zc/
 
 EOF
@@ -78,4 +108,4 @@ EOF
 source /etc/bashrc && echo ".bashrc修改完成"
 
 echo 请手动执行如下命令
-echo "source /etc/bashrc" 
+echo "source /etc/bashrc"

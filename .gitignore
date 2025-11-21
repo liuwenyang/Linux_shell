@@ -1,22 +1,134 @@
-dist/
-client/client/
-build/
-mc-build/
-cmake-build-debug/
-.verysync
-.history/
+# ==============================
+# 操作系统 & 编辑器通用忽略
+# ==============================
+
+.DS_Store
 .vscode/
+.idea/
 .svn/
 .git/
-.idea/
-.DS_Store
-tags
-*.log
-*.tmp
-*.m~
+.verysync
+.history/
+.vs/
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+.windsurf
+tags
+.nova/
+.agent/
 
-# AI 助手工具目录
-.claude/
+# ==============================
+# 构建系统 & 编译产物
+# ==============================
+
+# 通用构建目录
+build/
+dist/
+mc-build/
+cmake-build-debug/
+cmake-build-*/
+./vs
+
+# Qt Creator 自动生成的构建目录（典型命名：build-<project>-<kit>-<config>）
+build-*/
+
+# 自定义示例（保留以作参考，实际已被 build-*/ 覆盖）
+# build-zhuangche_1.0-Desktop_Qt_6_2_4_MSVC2019_64bit-MinSizeRel/
+
+# ==============================
+# 临时文件 & 日志
+# ==============================
+
+*.tmp
+*.log
+*.m~
+*.user
+*.manifest
+*.spec
+
+# ==============================
+# Python 相关（若项目含脚本）
+# ==============================
+
+*.egg
+*.egg-info
+*.whl
+*.dist-info
+*.zip
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tgz
+*.tbz
+*.tbz2
+
+# ==============================
+# AI / 智能编程助手相关
+# ==============================
+
+# AI 编辑器配置目录
 .cursor/
-.trae/
+.codeai/
+.ai/
+.copilot/
+.github-copilot/
+.vscopilot/
+.codechat/
+.magic/
+.tabnine/
+.blackbox/
+.continue/
+.aider/
+.pr-agent/
+.codepal/
+.codex/
+.deepcode/
+.sourcegraph/
+.codespaces/
+.devcontainer/
+.cline/
+.askcode/
+
+# AI 工具生成的项目级配置文件
+continue.json
+cursor.json
+.copilot/
+
+# 可能由 AI 插件生成的文件扩展名（保守添加）
+*.ai
+*.copilot
+*.cursor
+*.tabnine
+*.continue
+*.aider
+
+# GitHub Codespaces / Dev Containers
+.devcontainer/
+.github/codespaces/
+
+# ==============================
+# 其他 IDE / 工具
+# ==============================
+
+# Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.filters
+*.vcxproj.user
+
+# CLion / JetBrains
+.cmake/
+.clion/
+
+# Anthropic Claude (local integrations)
+.claude/
+claude.json
+claude-config.json
+.claude-session
+claude_session.*
+.env.claude
+*.claude

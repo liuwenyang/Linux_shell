@@ -27,11 +27,35 @@ alias dirnum='ls -l | grep "^d" | wc -l'
 export HISTTIMEFORMAT='%F %T '
 alias d2u="sed -i 's/\r//' "
 
+# 智能ping函数 - 根据系统和shell自动选择路径
 ping(){
-   /bin/ping "$@" | while read pong; do echo "$(now): $pong"; done
+    local ping_cmd
+    # 根据系统和shell选择ping路径
+    if [[ "$OSTYPE" == "darwin"* ]] && [[ "$SHELL" == */zsh ]]; then
+        # Mac系统使用zsh时，使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac系统使用bash时，也使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    else
+        # Linux系统或bash环境，使用/bin/ping
+        ping_cmd="/bin/ping"
+    fi
+    
+    # 检查ping命令是否存在
+    if ! command -v "$ping_cmd" &> /dev/null; then
+        ping_cmd="ping"
+        if ! command -v "$ping_cmd" &> /dev/null; then
+            echo "错误: 系统中找不到 ping 命令"
+            return 1
+        fi
+    fi
+    
+    # 执行ping命令并添加时间戳
+    "$ping_cmd" "$@" | while read -r pong; do
+        echo "$(now): $pong"
+    done
 }
 
 echo -e "SSH Login Alert\n\n登录账户: $(whoami)\n登录IP: $(echo $SSH_CONNECTION | awk '{print $1}')\n登录时间: $(TZ="Asia/Shanghai" date "+%Y-%m-%d %H:%M:%S")" | mail -s "阿里云主机 $(hostname) ssh登录提醒 " 你的@qq.com
-shopt -s extglob 
-
-
+shopt -s extglob

@@ -52,8 +52,34 @@ alias dirnum='ls -l | grep "^d" | wc -l'
 alias d2u="sed -i 's/\r//' "
 
 export HISTTIMEFORMAT='%F %T '
+# 智能ping函数 - 根据系统和shell自动选择路径
 ping(){
-   /bin/ping "$@" | while read pong; do echo "$(now): $pong"; done
+    local ping_cmd
+    # 根据系统和shell选择ping路径
+    if [[ "$OSTYPE" == "darwin"* ]] && [[ "$SHELL" == */zsh ]]; then
+        # Mac系统使用zsh时，使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac系统使用bash时，也使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    else
+        # Linux系统或bash环境，使用/bin/ping
+        ping_cmd="/bin/ping"
+    fi
+    
+    # 检查ping命令是否存在
+    if ! command -v "$ping_cmd" &> /dev/null; then
+        ping_cmd="ping"
+        if ! command -v "$ping_cmd" &> /dev/null; then
+            echo "错误: 系统中找不到 ping 命令"
+            return 1
+        fi
+    fi
+    
+    # 执行ping命令并添加时间戳
+    "$ping_cmd" "$@" | while read -r pong; do
+        echo "$(now): $pong"
+    done
 }
 
 
@@ -73,6 +99,7 @@ chmod 777 bak mman czexit
 mv bak /usr/local/bin
 mv mman /usr/local/bin
 # mv czexit /usr/local/bin
+
 echo 请手动执行如下命令
 echo "source /etc/bashrc" 
 source /etc/bashrc && echo "/etc/bashrc修改完成"

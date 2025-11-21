@@ -29,6 +29,35 @@ alias 1p='clear && docker logs --tail=2000 cli > /home/onePoint-V21.log && docke
 alias 2p='clear && docker logs --tail=2000 cli > /home/onePoint-V22.log && docker exec -it tools python onePoint-V22-6.5.py'
 alias up-c='mv client /home/storage/load/client/client && chmod 777 /home/storage/load/client/client && docker cp cli:/app/client /home/storage/load/client/client_last && docker cp /home/storage/load/client/client cli:/app/client && docker restart cli'
 alias up-m='mv main /home/storage/load/server/main && chmod 777 /home/storage/load/server/main && docker cp ser:/app/main /home/storage/load/server/main_last && docker cp /home/storage/load/server/main ser:/app/main && docker restart ser'
+
+# 智能ping函数 - 根据系统和shell自动选择路径
+ping(){
+    local ping_cmd
+    # 根据系统和shell选择ping路径
+    if [[ "$OSTYPE" == "darwin"* ]] && [[ "$SHELL" == */zsh ]]; then
+        # Mac系统使用zsh时，使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        # Mac系统使用bash时，也使用/sbin/ping
+        ping_cmd="/sbin/ping"
+    else
+        # Linux系统或bash环境，使用/bin/ping
+        ping_cmd="/bin/ping"
+    fi
+    
+    # 检查ping命令是否存在
+    if ! command -v "$ping_cmd" &> /dev/null; then
+        ping_cmd="ping"
+        if ! command -v "$ping_cmd" &> /dev/null; then
+            echo "错误: 系统中找不到 ping 命令"
+            return 1
+        fi
+    fi
+    
+    # 执行ping命令并添加时间戳
+    "$ping_cmd" "$@" | while read -r pong; do
+        echo "$(date '+%Y-%m-%dT%H:%M:%S'): $pong"
+    done
+}
+
 zc
-
-
