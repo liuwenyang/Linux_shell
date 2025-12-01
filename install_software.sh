@@ -3,8 +3,9 @@
 # 定义一个函数用于检查软件是否已安装并安装未安装的软件
 check_and_install() {
     package=$1
-    # 改进的检查方法：同时检查dpkg和command
-    if ! dpkg -l | grep -q "^ii.*$package" && ! command -v "$package" &> /dev/null; then
+    # 精确检查包名，避免被 libcurl4 等相似名称误判
+    if ! dpkg -s "$package" 2>/dev/null | grep -q "Status: install ok installed" \
+        && ! command -v "$package" &> /dev/null; then
         echo "$package 未安装，正在安装..."
         echo
         # 修复：使用sudo权限
@@ -38,7 +39,8 @@ done
 # 打印安装完成的软件列表
 echo "所有请求安装的软件处理完成，列表如下："
 for package in "${packages[@]}"; do
-    if dpkg -l | grep -q "^ii.*$package" || command -v "$package" &> /dev/null; then
+    if dpkg -s "$package" 2>/dev/null | grep -q "Status: install ok installed" \
+        || command -v "$package" &> /dev/null; then
         echo "$package 已安装"
     else
         echo "$package 未安装"
